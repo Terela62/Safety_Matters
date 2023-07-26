@@ -87,18 +87,18 @@ data = loadTable("twitter_data_pow.csv", "csv", "header");
   canvas = createCanvas(220, 1200);
   
   // video capture using ccapture
-  btn = document.createElement('button');
-  btn.textContent = "save recording";
-  document.body.appendChild(btn);
-  btn.onclick = save_record;
-  capturer.start();
+ // btn = document.createElement('button');
+  //btn.textContent = "save recording";
+  //document.body.appendChild(btn);
+  //btn.onclick = save_record;
+  //capturer.start();
   
   //Buttons for testing
   	
-  button =createButton('Delete WAll');
-  button.mousePressed(deleteBoundary);
+  //button =createButton('Delete WAll');
+  //button.mousePressed(deleteBoundary);
   
-  button2 =createButton('reset');
+  button2 =createButton('Reset Sketch');
   button2.mousePressed(resetSketch);
   
   //grounds.push(new Boundary(0, height / 2, 10, height));
