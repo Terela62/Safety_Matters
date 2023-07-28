@@ -105,7 +105,7 @@ data = loadTable("twitter_data_pow.csv", "csv", "header");
   //grounds.push(new Boundary(0, height / 2, 10, height));
   //grounds.push(new Boundary(width, height / 2, 10, height));
   //grounds.push(new Boundary(width / 2, 0, width, 10));
-   leftWall= Bodies.rectangle(0,height/2, 45, height,{isStatic: true,friction:0});
+   leftWall= Bodies.rectangle(0,height/2, 15, height,{isStatic: true,friction:0});
    rightWall = Bodies.rectangle(width, height/2, 15, height,{isStatic: true,friction:0});
    bottomWall = Bodies.rectangle(width/2, 1000, 220, 15,{isStatic: true,friction:0.5});
   Composite.add(world,[bottomWall, leftWall, rightWall]);
