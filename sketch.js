@@ -16,6 +16,7 @@ let mConstraint;
 let delayBetweenDays = 100;
 let delayBetweenBalls = 60;
 let delayBallDrop = 4000;
+let delayRestart = 10000;
 
 var capturer = new CCapture({ format: 'webm' , framerate: 30} );
 var btn;
@@ -44,7 +45,7 @@ let canvas;
 
 //preload excel data sheet that records tweets per day
 
-async function preload() {
+function preload() {
   
 data = loadTable("twitter_data_pow.csv", "csv", "header");
 }
@@ -86,8 +87,8 @@ data = loadTable("twitter_data_pow.csv", "csv", "header");
   frameRate(30);
   canvas = createCanvas(220, 1200);
   
-  // video capture using ccapture
- // btn = document.createElement('button');
+  //video capture using ccapture
+  //btn = document.createElement('button');
   //btn.textContent = "save recording";
   //document.body.appendChild(btn);
   //btn.onclick = save_record;
@@ -104,9 +105,9 @@ data = loadTable("twitter_data_pow.csv", "csv", "header");
   //grounds.push(new Boundary(0, height / 2, 10, height));
   //grounds.push(new Boundary(width, height / 2, 10, height));
   //grounds.push(new Boundary(width / 2, 0, width, 10));
-   leftWall= Bodies.rectangle(0,height/2, 15, height,{isStatic: true,friction:0});
+   leftWall= Bodies.rectangle(0,height/2, 45, height,{isStatic: true,friction:0});
    rightWall = Bodies.rectangle(width, height/2, 15, height,{isStatic: true,friction:0});
-   bottomWall = Bodies.rectangle(110, 900, 220, 15,{isStatic: true,friction:0.5});
+   bottomWall = Bodies.rectangle(width/2, 1000, 220, 15,{isStatic: true,friction:0.5});
   Composite.add(world,[bottomWall, leftWall, rightWall]);
    
 order();
@@ -144,18 +145,19 @@ function save_record() {
 
    
 async function ballDrop(){
+
   
   if (data) {
     let numRows = data.getRowCount();
     let numCols = data.getColumnCount();
 
 
-    for (let j = 0; j < numRows; j++) {
+    for (j = 0; j < numRows; j++) {
       //print(j);
       //print(numRows);
       //print(numCols);
       
-      for (let k = 0; k < numCols; k++) {
+      for (k = 0; k < numCols; k++) {
         
         let nBalls = data.get(j, k);
 
@@ -227,7 +229,7 @@ async function deleteBoundary(){
     
 }
   
-await sleep(delayBallDrop); //allows balls to clear screen before sketch restarted
+await sleep(delayRestart); //allows balls to clear screen before sketch restarted
 }
 
 //recalls balldrop and clears sketch
@@ -241,11 +243,13 @@ async function resetSketch(){
   clear();
   circles = [];
   grounds = [];
-  numRows = data.getRowCount();
-  numCols = data.getColumnCount();
-   leftWall= Bodies.rectangle(0,height/2, 15, height,{isStatic: true,friction:0});
+  j =0;
+  i=0;
+  //mRows = data.getRowCount();
+  //mCols = data.getColumnCount();
+   leftWall= Bodies.rectangle(0,height/2, 45, height,{isStatic: true,friction:0});
    rightWall = Bodies.rectangle(width, height/2, 15, height,{isStatic: true,friction:0});
-   bottomWall = Bodies.rectangle(width / 2, 900, width, 15,{isStatic: true,friction:0.8});
+   bottomWall = Bodies.rectangle(width/2, 1000, 220, 15,{isStatic: true,friction:0.5});
   Composite.add(world,[bottomWall, leftWall, rightWall]);
   
   order();
